@@ -2,6 +2,14 @@ package channel
 
 import "fmt"
 
+type Channel interface {
+    Each(func(Data))
+    Map(func(Data) Data) DataChannel
+    String() string
+    Any(func(Data) bool) bool
+    All(func(Data) bool) bool
+}
+
 type Data interface{}
 
 type DataChannel chan Data
