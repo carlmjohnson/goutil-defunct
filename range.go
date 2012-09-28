@@ -1,6 +1,8 @@
-package goutils
+package range
 
-func RangeFromToStep(from, to, step Number) numberChannel {
+import "github.com/earthboundkid/goutils/channel"
+
+func RangeFromToStep(from, to, step Number) channel.numberChannel {
 
 	ch := make(numberChannel)
 
