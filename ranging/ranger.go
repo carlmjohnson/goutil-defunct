@@ -20,7 +20,7 @@ func FromToStep(from, to, step goutil.Number) channel.NumberChannel {
 	} else {
 		//And vice versa, if negative, we need to wait for v to be lesser
 		go func() {
-			for v := from; v > to; v += step {
+			for v := from; to < v; v += step {
 				ch <- v
 			}
 			close(ch)
