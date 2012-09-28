@@ -1,10 +1,13 @@
-package range
+package ranger
 
-import "github.com/earthboundkid/goutils/channel"
+import (
+	"github.com/earthboundkid/goutil"
+	"github.com/earthboundkid/goutil/channel"
+)
 
-func RangeFromToStep(from, to, step Number) channel.numberChannel {
+func RangeFromToStep(from, to, step goutil.Number) channel.NumberChannel {
 
-	ch := make(numberChannel)
+	ch := channel.NewNumberChannel()
 
 	if step > 0 {
 		//If the Step is positive then wait for v to be greater than Stop
@@ -27,6 +30,6 @@ func RangeFromToStep(from, to, step Number) channel.numberChannel {
 	return ch
 }
 
-func Range(to Number) numberChannel {
+func Range(to goutil.Number) channel.NumberChannel {
 	return RangeFromToStep(0, to, 1)
 }

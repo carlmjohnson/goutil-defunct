@@ -1,7 +1,4 @@
-package goutils
-
-//For use in Sets
-type naught struct{}
+package goutil
 
 //Store whatever Data
 type Data interface{}

@@ -1,32 +1,35 @@
 package channel
 
-import "fmt"
+import (
+	"fmt"
+	"github.com/earthboundkid/goutil"
+)
 
 type Channel interface {
-	Each(func(Data))
-	Map(func(Data) Data) Channel
+	Each(func(goutil.Data))
+	Map(func(goutil.Data) goutil.Data) Channel
 	String() string
-	Any(func(Data) bool) bool
-	All(func(Data) bool) bool
+	Any(func(goutil.Data) bool) bool
+	All(func(goutil.Data) bool) bool
 }
+
+type DataChannel chan goutil.Data
 
 func NewChannel() Channel {
-	return make(dataChannel)
+	return make(DataChannel)
 }
 func NewChannelFromSlice() Channel {
-	return make(dataChannel)
+	return make(DataChannel)
 }
 
-type dataChannel chan Data
-
-func (c dataChannel) Each(f func(Data)) {
+func (c DataChannel) Each(f func(goutil.Data)) {
 	for v := range c {
 		f(v)
 	}
 }
 
-func (c dataChannel) Map(f func(Data) Data) Channel {
-	r := make(dataChannel)
+func (c DataChannel) Map(f func(goutil.Data) goutil.Data) Channel {
+	r := make(DataChannel)
 	go func() {
 		for v := range c {
 			c <- f(v)
@@ -36,7 +39,7 @@ func (c dataChannel) Map(f func(Data) Data) Channel {
 	return r
 }
 
-func (c dataChannel) String() string {
+func (c DataChannel) String() string {
 	s := ""
 	for v := range c {
 		s += fmt.Sprint(v)
@@ -44,32 +47,32 @@ func (c dataChannel) String() string {
 	return s
 }
 
-func (c dataChannel) Any(func(Data) bool) bool {
+func (c DataChannel) Any(func(goutil.Data) bool) bool {
 	return true
 }
 
-func (c dataChannel) All(func(Data) bool) bool {
+func (c DataChannel) All(func(goutil.Data) bool) bool {
 	return true
 }
 
-type numberChannel chan Number
+type NumberChannel chan goutil.Number
 
-func NewNumberChannel() numberChannel {
-	return make(numberChannel)
+func NewNumberChannel() NumberChannel {
+	return make(NumberChannel)
 }
-func NewNumberChannelFromSlice() numberChannel {
-	return make(numberChannel)
-}
-
-type stringChannel chan string
-
-func NewStringChannel() stringChannel {
-	return make(stringChannel)
-}
-func NewStringChannelFromSlice() stringChannel {
-	return make(stringChannel)
+func NewNumberChannelFromSlice() NumberChannel {
+	return make(NumberChannel)
 }
 
-func NewStringChannelFromFile(filename string) stringChannel {
-	return make(stringChannel)
+type StringChannel chan string
+
+func NewStringChannel() StringChannel {
+	return make(StringChannel)
+}
+func NewStringChannelFromSlice() StringChannel {
+	return make(StringChannel)
+}
+
+func NewStringChannelFromFile(filename string) StringChannel {
+	return make(StringChannel)
 }
