@@ -31,5 +31,5 @@ func FromToStep(from, to, step goutil.Number) channel.NumberChannel {
 }
 
 func To(to goutil.Number) channel.NumberChannel {
-	return RangeFromToStep(0, to, 1)
+	return FromToStep(0, to, 1)
 }

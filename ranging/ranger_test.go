@@ -1,9 +1,17 @@
 package ranging
 
 import (
-	"testing"
+	_ "testing"
+    "fmt"
 )
 
-func ExampleRange() {
-	//Output: 
+func ExampleTo() {
+    for i := range To(5) {
+        fmt.Println(i)
+    }
+	//Output: 0
+    //1
+    //2
+    //3
+    //4
 }
