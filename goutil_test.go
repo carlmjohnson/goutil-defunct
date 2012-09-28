@@ -3,7 +3,7 @@ package goutils
 import (
     "testing"
     "fmt"
-    "goutils/range"
+    "github.com/earthboundkid/goutils/ranger"
 )
 
 func ExampleRange() {
