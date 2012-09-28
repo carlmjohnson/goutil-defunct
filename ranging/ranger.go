@@ -1,11 +1,11 @@
-package ranger
+package ranging
 
 import (
 	"github.com/earthboundkid/goutil"
 	"github.com/earthboundkid/goutil/channel"
 )
 
-func RangeFromToStep(from, to, step goutil.Number) channel.NumberChannel {
+func FromToStep(from, to, step goutil.Number) channel.NumberChannel {
 
 	ch := channel.NewNumberChannel()
 
@@ -30,6 +30,6 @@ func RangeFromToStep(from, to, step goutil.Number) channel.NumberChannel {
 	return ch
 }
 
-func Range(to goutil.Number) channel.NumberChannel {
+func To(to goutil.Number) channel.NumberChannel {
 	return RangeFromToStep(0, to, 1)
 }

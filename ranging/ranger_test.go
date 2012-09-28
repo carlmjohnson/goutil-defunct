@@ -1,4 +1,4 @@
-package ranger
+package ranging
 
 import (
 	"testing"
