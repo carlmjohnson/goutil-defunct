@@ -39,7 +39,9 @@ func readlines(ch chan<- string, rdr *bufio.Reader) {
 		// Otherwise there's a problem; print the
 		// error and exit with non-zero status.
 		default:
-			log.Fatal(err)
+			log.Println(err)
+			close(ch)
+			return
 		}
 	}
 }
